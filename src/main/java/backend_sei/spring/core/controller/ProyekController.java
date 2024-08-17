@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+
 @RequestMapping("/api")
 public class ProyekController {
 
@@ -27,7 +28,7 @@ public class ProyekController {
 
     @PutMapping("/proyek/{id}")
     public ResponseEntity<Proyek> updateProyek(@PathVariable Long id, @RequestBody Proyek proyekDetails) {
-        Proyek updatedProyek = proyekService.updateProyek(proyekDetails);
+        Proyek updatedProyek = proyekService.updateProyek(id, proyekDetails);
         return ResponseEntity.ok(updatedProyek);
     }
 

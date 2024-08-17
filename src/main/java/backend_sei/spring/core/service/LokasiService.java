@@ -21,11 +21,18 @@ public class LokasiService {
         return lokasiRepository.save(lokasi);
     }
 
-    public Lokasi updateLokasi(Lokasi lokasi) {
-        return lokasiRepository.save(lokasi);
+    public Lokasi updateLokasi(Long id, Lokasi lokasi) {
+        Lokasi lokasiLama = lokasiRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Lokasi tidak ditemukan"));
+        lokasiLama.setNamaLokasi(lokasi.getNamaLokasi());
+        lokasiLama.setNegara(lokasi.getNegara());
+        lokasiLama.setProvinsi(lokasi.getProvinsi());
+        lokasiLama.setKota(lokasi.getKota());
+        return lokasiRepository.save(lokasiLama);
     }
 
     public void deleteLokasi(Long id) {
         lokasiRepository.deleteById(id);
     }
+
 }

@@ -27,7 +27,7 @@ public class LokasiController {
 
     @PutMapping("/lokasi/{id}")
     public ResponseEntity<Lokasi> updateLokasi(@PathVariable Long id, @RequestBody Lokasi lokasiDetails) {
-        Lokasi updatedLokasi = lokasiService.updateLokasi(lokasiDetails);
+        Lokasi updatedLokasi = lokasiService.updateLokasi(id, lokasiDetails);
         return ResponseEntity.ok(updatedLokasi);
     }
 

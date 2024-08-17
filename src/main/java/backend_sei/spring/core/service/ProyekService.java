@@ -21,8 +21,17 @@ public class ProyekService {
         return proyekRepository.save(proyek);
     }
 
-    public Proyek updateProyek(Proyek proyek) {
-        return proyekRepository.save(proyek);
+    public Proyek updateProyek(Long id, Proyek proyek) {
+        Proyek proyekLama = proyekRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Proyek tidak ditemukan"));
+        proyekLama.setNamaProyek(proyek.getNamaProyek());
+        proyekLama.setClient(proyek.getClient());
+        proyekLama.setTglMulai(proyek.getTglMulai());
+        proyekLama.setTglSelesai(proyek.getTglSelesai());
+        proyekLama.setPimpinanProyek(proyek.getPimpinanProyek());
+        proyekLama.setKeterangan(proyek.getKeterangan());
+        proyekLama.setLokasiList(proyek.getLokasiList());
+        return proyekRepository.save(proyekLama);
     }
 
     public void deleteProyek(Long id) {
